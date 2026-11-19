@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+!.env.example
+**/node_modules/
+**/target/
+**/build/
+**/*service-account*.json
+**/credentials*.json
+**/*secret*.json
+*.log
