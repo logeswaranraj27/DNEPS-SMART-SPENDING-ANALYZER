@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartSpend — Personal Finance & Spending Analytics for College Students</title>
+  <meta name="description" content="A comprehensive personal finance, itemized expense management, budget planning, and conversational AI assistant system for college students.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">₹</div>
+        <div class="brand-text">Smart<span>Spend</span></div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#dneps" class="nav-link">DNEPS AI</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-secondary">Sign In</a>
+        <a href="register.html" class="btn btn-primary">Get Started</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section style="padding: 5rem 1.5rem 4rem; background: radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 60%); text-align: center;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.15; color: var(--slate-900); margin-bottom: 1.25rem;">
+          Master Your College Finances with <span style="color: var(--primary-600);">SmartSpend</span>
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--slate-600); max-width: 720px; margin: 0 auto 2.25rem; line-height: 1.6;">
+          An authoritative personal finance management and spending analytics system tailored specifically for college students. Track itemized purchases, enforce budgets, discover savings, and get guided by <strong>DNEPS AI</strong>.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="register.html" class="btn btn-primary btn-lg">Launch Application</a>
+          <a href="login.html" class="btn btn-secondary btn-lg">Explore Demo Dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Metrics / Highlights Strip -->
+    <section id="features" style="max-width: 1100px; margin: -1.5rem auto 3.5rem; padding: 0 1.5rem;">
+      <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center; border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+        <div>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--primary-600);">100%</div>
+          <div style="font-size: 0.88rem; color: var(--slate-500); font-weight: 600;">Authoritative Logic</div>
+        </div>
+        <div>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--teal-600);">₹ INR</div>
+          <div style="font-size: 0.88rem; color: var(--slate-500); font-weight: 600;">Native Student Currency</div>
+        </div>
+        <div>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--color-indigo);">Itemized</div>
+          <div style="font-size: 0.88rem; color: var(--slate-500); font-weight: 600;">Granular Receipt Details</div>
+        </div>
+        <div>
+          <div style="font-size: 2rem; font-weight: 800; color: var(--color-success);">DNEPS AI</div>
+          <div style="font-size: 0.88rem; color: var(--slate-500); font-weight: 600;">Personal Smart Buddy</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DNEPS AI Assistant Spotlight -->
+    <section id="dneps" style="background: linear-gradient(135deg, #064E3B, #0D9488); color: #FFFFFF; padding: 4.5rem 1.5rem; margin: 3rem 0 0;">
+      <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+        <div>
+          <span style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; padding: 0.35rem 0.75rem; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 700;">
+            CONVERSATIONAL ASSISTANT
+          </span>
+          <h2 style="color: #FFFFFF; font-size: 2.35rem; margin: 1rem 0 0.75rem;">Meet DNEPS AI</h2>
+          <p style="font-size: 1.05rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.6;">
+            "Your Personal Smart Spending & Savings Buddy." Unlike generic chatbots, DNEPS AI directly reviews your authorized financial records computed authoritatively by our backend.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.92rem;">
+            <div style="display: flex; gap: 0.5rem; align-items: center;">💬 "How much did I spend on snacks this week?"</div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">💡 "Where could I reduce my spending to save ₹500?"</div>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">📈 "Did I spend more than last week?"</div>
+          </div>
+        </div>
+
+        <div style="background: #FFFFFF; color: var(--slate-800); border-radius: var(--radius-xl); padding: 1.5rem; box-shadow: var(--shadow-xl);">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: #059669; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700;">D</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">DNEPS AI</div>
+              <div style="font-size: 0.75rem; color: var(--slate-500);">Your Personal Smart Spending Buddy</div>
+            </div>
+          </div>
+          <div style="background: var(--slate-50); border-radius: var(--radius-md); padding: 1rem; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1rem;">
+            <strong>Student:</strong> "How much did I spend on snacks this week?"<br><br>
+            <strong>DNEPS AI:</strong> "Over the last 7 days, you spent ₹320 across 3 snack purchases (Chips ₹60, Samosa ₹80, Cookies ₹180). That's 14% of your weekly spending. If you reduce snack purchases by 25%, you could save ₹80 towards your headphones goal!"
+          </div>
+          <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">Try DNEPS AI in Dashboard &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="about" class="app-footer">
+    <div class="footer-container">
+      <div>
+        <div style="font-weight: 800; font-size: 1.15rem; color: var(--slate-900);">SmartSpend</div>
+        <div style="font-size: 0.88rem; color: var(--slate-600); margin-top: 0.25rem;">
+          Take control of your money. Make every decision count.
+        </div>
+      </div>
+      <div style="display: flex; gap: 1.5rem; font-size: 0.88rem; flex-wrap: wrap;">
+        <a href="index.html">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Register</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div style="font-size: 0.82rem; color: var(--slate-400);">
+        © 2026 SmartSpend. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

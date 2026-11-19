@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — SmartSpend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <div class="auth-header">
+      <a href="index.html" class="auth-brand">
+        <div class="brand-icon">₹</div>
+        <span>Smart<span style="color:var(--primary-600);">Spend</span></span>
+      </a>
+      <p style="font-size: 0.92rem; color: var(--slate-500);">Student Personal Finance & Spending Analytics</p>
+    </div>
+
+    <div class="auth-card">
+      <h1 class="auth-card-title">Join SmartSpend</h1>
+      <p class="auth-card-subtitle">Take control of your college spending and start building savings today.</p>
+
+      <div class="auth-alert auth-alert-error" id="auth-error-alert">
+        <span>⚠️</span>
+        <span id="auth-error-msg">Error registering account</span>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Lokeswaran" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">College / Personal Email</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="student@college.edu" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="At least 6 characters" minlength="6" required autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-college">College / University Name</label>
+          <input type="text" id="reg-college" class="form-control" placeholder="e.g., University or Institution Name">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-reg-submit" style="width: 100%; margin-top: 1rem; padding: 0.75rem;">
+          Create Free Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('register-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const password = document.getElementById('reg-password').value;
+        const submitBtn = document.getElementById('btn-reg-submit');
+        const alertEl = document.getElementById('auth-error-alert');
+        const alertMsg = document.getElementById('auth-error-msg');
+
+        alertEl.classList.remove('visible');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating Account...';
+
+        try {
+          await window.Auth.register(email, password, name);
+          UI.showToast("Account created successfully!", "success");
+          window.location.href = 'dashboard.html';
+        } catch (err) {
+          alertMsg.textContent = err.message || "Failed to create account.";
+          alertEl.classList.add('visible');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Free Account';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

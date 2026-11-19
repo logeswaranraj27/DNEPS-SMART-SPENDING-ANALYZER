@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Goals — SmartSpend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon">₹</div>
+        <div class="brand-text">Smart<span>Spend</span></div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="transactions.html" class="nav-link">Transactions</a>
+        <a href="budgets.html" class="nav-link">Budgets & Analytics</a>
+        <a href="savings.html" class="nav-link active">Savings Goals</a>
+        <a href="profile.html" class="nav-link">Settings</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="header-user-display" class="user-menu-btn" style="display: flex;">
+          <div class="user-avatar">S</div>
+          <span class="user-name">Student</span>
+        </div>
+        <button class="btn btn-sm btn-secondary" onclick="handleLogout()">Sign Out</button>
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main">
+    
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>Savings Goals & Milestones</h1>
+        <p>Set targets for tech gadgets, college fees, trips, or emergency funds with automated savings rate estimates.</p>
+      </div>
+
+      <div class="header-controls">
+        <button class="btn btn-primary" onclick="openAddGoalModal()">+ Create Savings Goal</button>
+      </div>
+    </div>
+
+    <!-- Savings Goals Grid -->
+    <div class="goals-grid" id="savings-goals-container">
+      <!-- Injected by savings.js -->
+    </div>
+
+  </main>
+
+  <!-- Create / Edit Savings Goal Modal -->
+  <div class="modal-backdrop" id="savings-goal-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="goal-modal-title">Create Savings Goal</h3>
+        <button class="modal-close" onclick="UI.closeModal('savings-goal-modal')">&times;</button>
+      </div>
+
+      <form id="savings-goal-form">
+        <input type="hidden" id="goal-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="goal-name">Goal Name</label>
+            <input type="text" id="goal-name" class="form-control" placeholder="e.g. Noise Cancelling Headphones, Semester Trip" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goal-desc">Description (Optional)</label>
+            <input type="text" id="goal-desc" class="form-control" placeholder="e.g. Target for study focus and online lectures">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="goal-target">Target Amount (₹)</label>
+              <input type="number" id="goal-target" step="1" min="1" class="form-control" placeholder="e.g. 4000" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="goal-initial-saved">Already Saved (₹)</label>
+              <input type="number" id="goal-initial-saved" step="1" min="0" class="form-control" placeholder="0" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goal-target-date">Target Date</label>
+            <input type="date" id="goal-target-date" class="form-control" required>
+            <span class="form-hint">Used by Java backend to calculate your suggested weekly savings rate.</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="UI.closeModal('savings-goal-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Goal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Deposit / Contribution Modal -->
+  <div class="modal-backdrop" id="contribution-modal">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Savings Contribution</h3>
+        <button class="modal-close" onclick="UI.closeModal('contribution-modal')">&times;</button>
+      </div>
+
+      <form id="goal-contribution-form">
+        <input type="hidden" id="contrib-goal-id">
+        <div class="modal-body">
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.25rem;" id="contrib-goal-name">Goal Name</div>
+          <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 1.25rem;" id="contrib-remaining-text">Remaining: ₹0.00</p>
+
+          <div class="form-group">
+            <label class="form-label" for="contrib-amount">Amount Saved (₹)</label>
+            <input type="number" id="contrib-amount" step="1" min="1" class="form-control" placeholder="e.g. 500" required autofocus>
+            <span class="form-hint">Contributions are credited towards this goal's saved total.</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="UI.closeModal('contribution-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Record Deposit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DNEPS AI Floating Button & Panel -->
+  <button class="dneps-fab" id="dneps-fab-btn" title="Chat with DNEPS AI">🤖</button>
+
+  <div class="dneps-chat-panel" id="dneps-chat-panel">
+    <div class="dneps-chat-header">
+      <div class="dneps-chat-header-info">
+        <div class="dneps-avatar-icon">🤖</div>
+        <div>
+          <div class="dneps-title">DNEPS AI</div>
+          <div class="dneps-tagline">Your Personal Smart Spending & Savings Buddy</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button id="dneps-new-chat-btn" style="background:transparent; border:none; color:#fff; cursor:pointer;" title="New Chat">🔄</button>
+        <button id="dneps-close-btn" style="background:transparent; border:none; color:#fff; cursor:pointer; font-size:1.3rem;" title="Close">&times;</button>
+      </div>
+    </div>
+    <div class="dneps-chat-messages" id="dneps-messages"></div>
+    <div class="dneps-suggestions-container" id="dneps-suggestions"></div>
+    <form class="dneps-chat-input-bar" id="dneps-chat-form">
+      <input type="text" class="dneps-chat-input" id="dneps-chat-input" placeholder="Ask how to plan for your savings goals..." required autocomplete="off">
+      <button type="submit" class="btn btn-primary btn-sm" style="border-radius: var(--radius-full); padding: 0.55rem 1rem;">Send</button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/savings.js"></script>
+  <script src="js/dneps-ai.js"></script>
+</body>
+</html>

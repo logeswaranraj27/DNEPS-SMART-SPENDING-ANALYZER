@@ -1,0 +1,732 @@
+/* ==========================================================================
+   SmartSpend - Dashboard, Analytics, Budgets & AI Styles
+   ========================================================================== */
+
+/* Main Layout */
+.app-main {
+  flex: 1;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 3.5rem;
+}
+
+/* Page Headers & Actions */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.page-title-group h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--slate-900);
+}
+
+.page-title-group p {
+  font-size: 0.92rem;
+  color: var(--slate-500);
+  margin-top: 0.2rem;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Metric / Stat Overview Cards */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--slate-200);
+}
+
+.metric-card.metric-income::before { background: var(--color-success); }
+.metric-card.metric-expense::before { background: var(--color-danger); }
+.metric-card.metric-net::before { background: var(--teal-600); }
+.metric-card.metric-savings::before { background: var(--color-indigo); }
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--slate-500);
+  margin-bottom: 0.35rem;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  letter-spacing: -0.02em;
+}
+
+.metric-subtext {
+  font-size: 0.8rem;
+  color: var(--slate-500);
+  margin-top: 0.35rem;
+}
+
+.metric-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.metric-income .metric-icon-box {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.metric-expense .metric-icon-box {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.metric-net .metric-icon-box {
+  background-color: var(--teal-50);
+  color: var(--teal-600);
+}
+
+.metric-savings .metric-icon-box {
+  background-color: var(--color-indigo-bg);
+  color: var(--color-indigo);
+}
+
+/* Dashboard Sections Grid */
+.dashboard-grid-2col {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-grid-equal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Charts Containers */
+.chart-container {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Itemized Expense Dynamic Entry Form */
+.itemized-builder {
+  background-color: var(--slate-50);
+  border: 1px dashed var(--slate-300);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.itemized-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.itemized-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--slate-800);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.itemized-rows-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 140px 40px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-remove-item {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-color);
+  background: #FFFFFF;
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.btn-remove-item:hover {
+  background-color: var(--color-danger-bg);
+  border-color: var(--color-danger);
+}
+
+.itemized-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.itemized-total-match {
+  color: var(--color-success);
+}
+
+.itemized-total-mismatch {
+  color: var(--color-danger);
+}
+
+/* Budgets & Progress Bars */
+.budget-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.budget-item-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.budget-item-card:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--slate-300);
+}
+
+.budget-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.budget-category-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--slate-900);
+}
+
+.progress-track {
+  width: 100%;
+  height: 9px;
+  background-color: var(--slate-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color var(--transition-fast);
+}
+
+/* 4-tier Budget Status colors */
+.budget-status-ok { background-color: var(--color-success); }
+.budget-status-warning { background-color: var(--color-warning); }
+.budget-status-full { background-color: var(--teal-600); }
+.budget-status-exceeded { background-color: var(--color-danger); }
+
+.budget-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--slate-500);
+}
+
+.budget-remaining-text strong {
+  color: var(--slate-800);
+}
+
+/* "Where You Could Save" (Avoidable Expense Analysis) */
+.savings-opportunity-card {
+  background: linear-gradient(135deg, #FFFFFF, var(--teal-50));
+  border: 1px solid var(--teal-100);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.savings-opportunity-card:hover {
+  border-color: var(--teal-500);
+  box-shadow: var(--shadow-sm);
+}
+
+.opportunity-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.opportunity-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--slate-900);
+}
+
+.opportunity-explanation {
+  font-size: 0.88rem;
+  color: var(--slate-600);
+  margin: 0.5rem 0 1rem;
+  line-height: 1.45;
+}
+
+.opportunity-slider-box {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate-700);
+  margin-bottom: 0.5rem;
+}
+
+.reduction-slider {
+  width: 100%;
+  accent-color: var(--teal-600);
+  cursor: pointer;
+}
+
+.opportunity-calc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--slate-200);
+}
+
+.potential-savings-badge {
+  background-color: var(--teal-100);
+  color: var(--teal-700);
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.opportunity-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+/* Weekly Spending Review Card */
+.weekly-review-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.weekly-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--slate-50);
+  border-radius: var(--radius-md);
+  margin: 1.25rem 0;
+}
+
+.weekly-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.weekly-stat-label {
+  font-size: 0.78rem;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.weekly-stat-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--slate-900);
+}
+
+.weekly-insights-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.weekly-insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--slate-700);
+  line-height: 1.4;
+}
+
+.weekly-insight-icon {
+  color: var(--primary-600);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+/* Savings Goals Cards */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.goal-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.goal-card:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--slate-300);
+}
+
+.goal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.goal-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.goal-target-date {
+  font-size: 0.82rem;
+  color: var(--slate-500);
+  margin-top: 0.2rem;
+}
+
+.goal-amounts-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.goal-current-amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-700);
+}
+
+.goal-target-amount {
+  font-size: 0.95rem;
+  color: var(--slate-500);
+}
+
+.goal-recommendation-box {
+  background-color: var(--primary-50);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--primary-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* DNEPS AI Chat Assistant Widget & Interface */
+.dneps-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669, #0D9488);
+  color: #FFFFFF;
+  border: none;
+  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  z-index: 900;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.dneps-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 30px -5px rgba(5, 150, 105, 0.5);
+}
+
+.dneps-chat-panel {
+  position: fixed;
+  bottom: 6rem;
+  right: 2rem;
+  width: 420px;
+  max-width: calc(100vw - 2rem);
+  height: 600px;
+  max-height: calc(100vh - 8rem);
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+  display: none;
+  flex-direction: column;
+  z-index: 950;
+  overflow: hidden;
+  animation: slideUp var(--transition-normal);
+}
+
+.dneps-chat-panel.active {
+  display: flex;
+}
+
+.dneps-chat-header {
+  padding: 1.15rem 1.25rem;
+  background: linear-gradient(135deg, #064E3B, #0D9488);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dneps-chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dneps-avatar-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.dneps-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.dneps-tagline {
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.dneps-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background-color: var(--slate-50);
+}
+
+.chat-message {
+  max-width: 82%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  animation: fadeIn var(--transition-fast);
+}
+
+.chat-message-bot {
+  align-self: flex-start;
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  color: var(--slate-800);
+  border-bottom-left-radius: 4px;
+}
+
+.chat-message-user {
+  align-self: flex-end;
+  background-color: var(--primary-600);
+  color: #FFFFFF;
+  border-bottom-right-radius: 4px;
+}
+
+.dneps-suggestions-container {
+  padding: 0.5rem 1rem;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dneps-suggestions-container::-webkit-scrollbar {
+  display: none;
+}
+
+.suggestion-chip {
+  background-color: var(--slate-100);
+  color: var(--slate-700);
+  border: 1px solid var(--border-color);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.suggestion-chip:hover {
+  background-color: var(--primary-50);
+  border-color: var(--primary-300);
+  color: var(--primary-800);
+}
+
+.dneps-chat-input-bar {
+  padding: 0.75rem 1rem;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dneps-chat-input {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 0.55rem 1rem;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.dneps-chat-input:focus {
+  border-color: var(--primary-500);
+}
+
+/* Filter and Search Bar */
+.filter-bar {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--slate-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 240px;
+}
+
+.search-input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.88rem;
+}

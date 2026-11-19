@@ -1,0 +1,33 @@
+# Environment files and credentials
+.env*
+!.env.example
+application-local.properties
+**/*service-account*.json
+**/credentials*.json
+**/*secret*.json
+
+# Dependencies, build outputs, and compiled files
+**/node_modules/
+**/target/
+**/build/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+
+# Logs, caches, and temporary files
+*.log
+*.cache
+*.tmp
+hs_err_pid*
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+*.classpath
+*.project
+.settings/
+.DS_Store
+Thumbs.db

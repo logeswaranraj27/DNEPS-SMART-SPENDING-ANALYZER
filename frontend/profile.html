@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings & Preferences — SmartSpend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo">
+        <div class="brand-icon">₹</div>
+        <div class="brand-text">Smart<span>Spend</span></div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="transactions.html" class="nav-link">Transactions</a>
+        <a href="budgets.html" class="nav-link">Budgets & Analytics</a>
+        <a href="savings.html" class="nav-link">Savings Goals</a>
+        <a href="profile.html" class="nav-link active">Settings</a>
+      </nav>
+
+      <div class="header-actions">
+        <div id="header-user-display" class="user-menu-btn" style="display: flex;">
+          <div class="user-avatar">S</div>
+          <span class="user-name">Student</span>
+        </div>
+        <button class="btn btn-sm btn-secondary" onclick="handleLogout()">Sign Out</button>
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main" style="max-width: 900px;">
+    
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>Profile & Preferences</h1>
+        <p>Manage your student identity, personalized AI spending modes, and backend integration status.</p>
+      </div>
+    </div>
+
+    <!-- Student Profile Card -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <h2 class="card-title" style="margin-bottom: 1.25rem;">Student Identity</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Display Name</label>
+          <input type="text" id="prof-name" class="form-control" value="Student" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="prof-email" class="form-control" value="student@college.edu" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Authenticated User ID (UID)</label>
+          <input type="text" id="prof-uid" class="form-control" style="font-family: monospace; font-size: 0.85rem;" readonly>
+          <span class="form-hint">Used for strictly verified, user-isolated database ownership on the Java backend.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Default Currency</label>
+          <input type="text" class="form-control" value="₹ Indian Rupee (INR)" readonly>
+        </div>
+      </div>
+    </div>
+
+    <!-- DNEPS AI Personalized Spending Modes -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">🤖 DNEPS AI Personalized Spending Modes</h2>
+          <p class="card-subtitle">Controls the recommendation aggressiveness of your smart buddy without altering underlying facts</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 0.5rem;" id="ai-mode-selector">
+        
+        <div class="card" style="cursor: pointer; border: 2px solid var(--border-color); padding: 1.25rem;" id="mode-easy" onclick="selectAiMode('Easy Mode')">
+          <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--slate-900);">🌱 Easy Mode</div>
+          <p style="font-size: 0.82rem; color: var(--slate-600); line-height: 1.4;">
+            Small, manageable 10-15% spending reductions. Gentle recommendations with minimal lifestyle changes.
+          </p>
+        </div>
+
+        <div class="card" style="cursor: pointer; border: 2px solid var(--primary-600); background-color: var(--primary-50); padding: 1.25rem;" id="mode-balanced" onclick="selectAiMode('Balanced Mode')">
+          <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--primary-900);">⚖️ Balanced Mode (Default)</div>
+          <p style="font-size: 0.82rem; color: var(--primary-800); line-height: 1.4;">
+            Moderate 20-30% adjustments. Balances college social life, outings, and disciplined goal progression.
+          </p>
+        </div>
+
+        <div class="card" style="cursor: pointer; border: 2px solid var(--border-color); padding: 1.25rem;" id="mode-savings" onclick="selectAiMode('Savings Focus')">
+          <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--slate-900);">🚀 Savings Focus</div>
+          <p style="font-size: 0.82rem; color: var(--slate-600); line-height: 1.4;">
+            Higher 35-50% reduction targets on flexible snacks and shopping to rapidly fund upcoming milestones.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Quick Sample Data Generator -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <h2 class="card-title" style="margin-bottom: 0.5rem;">⚡ Demo & Sample Dataset</h2>
+      <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 1.25rem;">
+        Populate realistic sample transactions (canteen lunch with itemized chips, drinks, chocolate; books; allowance; budgets; savings goal for headphones) to explore the system.
+      </p>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button type="button" class="btn btn-primary" id="btn-load-sample" onclick="loadSampleDataset()">
+          📥 Populate Sample Data
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="clearUserData()">
+          🗑️ Clear All User Data
+        </button>
+      </div>
+    </div>
+
+    <!-- System & Backend Diagnostics -->
+    <div class="card">
+      <h2 class="card-title" style="margin-bottom: 1rem;">System Diagnostics</h2>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+          <span>Java Spring Boot Backend</span>
+          <span id="diag-backend-status" class="badge badge-warning">Checking...</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+          <span>Firebase Authentication Client</span>
+          <span id="diag-firebase-status" class="badge badge-info">Active</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+          <span>DNEPS AI Language Model Provider</span>
+          <span id="diag-ai-status" class="badge badge-purple">Google Gemini / Spring AI</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- DNEPS AI Floating Button & Panel -->
+  <button class="dneps-fab" id="dneps-fab-btn" title="Chat with DNEPS AI">🤖</button>
+
+  <div class="dneps-chat-panel" id="dneps-chat-panel">
+    <div class="dneps-chat-header">
+      <div class="dneps-chat-header-info">
+        <div class="dneps-avatar-icon">🤖</div>
+        <div>
+          <div class="dneps-title">DNEPS AI</div>
+          <div class="dneps-tagline">Your Personal Smart Spending & Savings Buddy</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button id="dneps-new-chat-btn" style="background:transparent; border:none; color:#fff; cursor:pointer;" title="New Chat">🔄</button>
+        <button id="dneps-close-btn" style="background:transparent; border:none; color:#fff; cursor:pointer; font-size:1.3rem;" title="Close">&times;</button>
+      </div>
+    </div>
+    <div class="dneps-chat-messages" id="dneps-messages"></div>
+    <div class="dneps-suggestions-container" id="dneps-suggestions"></div>
+    <form class="dneps-chat-input-bar" id="dneps-chat-form">
+      <input type="text" class="dneps-chat-input" id="dneps-chat-input" placeholder="Ask DNEPS AI..." required autocomplete="off">
+      <button type="submit" class="btn btn-primary btn-sm" style="border-radius: var(--radius-full); padding: 0.55rem 1rem;">Send</button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dneps-ai.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.Auth && !window.Auth.requireAuth()) return;
+
+      const user = window.Auth.currentUser;
+      if (user) {
+        document.getElementById('prof-name').value = user.displayName || 'Student';
+        document.getElementById('prof-email').value = user.email || 'student@smartspend.edu';
+        document.getElementById('prof-uid').value = user.uid || 'N/A';
+      }
+
+      // Check current mode
+      const savedMode = localStorage.getItem('smartspend_ai_mode') || 'Balanced Mode';
+      selectAiMode(savedMode, false);
+
+      // Check backend ping
+      fetch((window.BACKEND_API_URL || 'http://localhost:8080/api') + '/health')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('diag-backend-status').className = 'badge badge-income';
+          document.getElementById('diag-backend-status').textContent = 'Online (Java 21)';
+        })
+        .catch(err => {
+          document.getElementById('diag-backend-status').className = 'badge badge-expense';
+          document.getElementById('diag-backend-status').textContent = 'Offline (Start Backend)';
+        });
+    });
+
+    window.selectAiMode = (modeName, notify = true) => {
+      localStorage.setItem('smartspend_ai_mode', modeName);
+      
+      const cards = {
+        'Easy Mode': document.getElementById('mode-easy'),
+        'Balanced Mode': document.getElementById('mode-balanced'),
+        'Savings Focus': document.getElementById('mode-savings')
+      };
+
+      Object.entries(cards).forEach(([name, el]) => {
+        if (!el) return;
+        if (name === modeName) {
+          el.style.borderColor = 'var(--primary-600)';
+          el.style.backgroundColor = 'var(--primary-50)';
+        } else {
+          el.style.borderColor = 'var(--border-color)';
+          el.style.backgroundColor = '#FFFFFF';
+        }
+      });
+
+      if (notify) {
+        UI.showToast(`Switched DNEPS AI to ${modeName}!`, "success");
+      }
+    };
+
+    /**
+     * Load realistic college sample dataset
+     */
+    window.loadSampleDataset = async () => {
+      const btn = document.getElementById('btn-load-sample');
+      btn.disabled = true;
+      btn.textContent = 'Populating data...';
+
+      try {
+        const today = Utils.getTodayDate();
+        const currentMonth = Utils.getCurrentMonth();
+
+        // 1. Create Allowance Income
+        await API.createTransaction({
+          type: 'income',
+          category: 'Allowance',
+          amount: 8000,
+          date: today,
+          description: 'Monthly parents allowance & hostel stipend',
+          items: []
+        });
+
+        // 2. Create Essential Itemized Canteen Expense (₹350 with 4 items!)
+        await API.createTransaction({
+          type: 'expense',
+          category: 'Food',
+          amount: 350,
+          date: today,
+          description: 'College Canteen Lunch & Evening Snacks',
+          items: [
+            { name: 'Lunch Thali', amount: 150 },
+            { name: 'Chips', amount: 60 },
+            { name: 'Cool drink', amount: 70 },
+            { name: 'Chocolate', amount: 70 }
+          ]
+        });
+
+        // 3. Create Study Books Expense
+        await API.createTransaction({
+          type: 'expense',
+          category: 'Education',
+          amount: 650,
+          date: today,
+          description: 'Operating Systems & Algorithm Textbook',
+          items: [
+            { name: 'OS Concepts Book', amount: 450 },
+            { name: 'Spiral Notebooks (pack of 2)', amount: 200 }
+          ]
+        });
+
+        // 4. Create Monthly Budgets (skip if already created for this month)
+        try {
+          await API.createBudget({
+            category: 'Food',
+            limitAmount: 3000,
+            month: currentMonth
+          });
+        } catch (e) {
+          console.info("Sample Food budget already exists:", e.message);
+        }
+
+        try {
+          await API.createBudget({
+            category: 'Overall Budget',
+            limitAmount: 7000,
+            month: currentMonth
+          });
+        } catch (e) {
+          console.info("Sample Overall budget already exists:", e.message);
+        }
+
+        // 5. Create Savings Goal for Headphones
+        await API.createSavingsGoal({
+          name: 'Noise-Cancelling Headphones',
+          description: 'For coding and studying in college library',
+          targetAmount: 4000,
+          currentAmount: 1200,
+          targetDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        });
+
+        UI.showToast("Sample dataset populated successfully! Explore Dashboard & Transactions.", "success");
+      } catch (err) {
+        UI.showToast(err.message || "Failed to load sample data. Is Java backend running?", "error");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '📥 Populate Sample Data';
+      }
+    };
+
+    window.clearUserData = () => {
+      UI.confirm('Clear All Data', 'Are you sure you want to clear your transactions and budgets?', () => {
+        UI.showToast("Reset request submitted.", "info");
+      });
+    };
+  </script>
+</body>
+</html>
