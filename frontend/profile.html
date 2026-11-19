@@ -199,7 +199,7 @@
       selectAiMode(savedMode, false);
 
       // Check backend ping
-      fetch((window.BACKEND_API_URL || 'http://localhost:8080/api') + '/health')
+      fetch((window.BACKEND_API_URL || 'https://dneps-smartspend-backend.onrender.com/api') + '/health')
         .then(res => res.json())
         .then(data => {
           document.getElementById('diag-backend-status').className = 'badge badge-income';

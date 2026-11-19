@@ -6,7 +6,7 @@
 
 const API = {
   // Default Spring Boot backend URL
-  baseUrl: window.BACKEND_API_URL || 'http://localhost:8080/api',
+  baseUrl: window.BACKEND_API_URL || 'https://dneps-smartspend-backend.onrender.com/api',
 
   /**
    * Internal request handler with bearer token
